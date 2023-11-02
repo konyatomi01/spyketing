@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 3108276197
+    locked: 0
+  - name: Bacteria
+    uniqueID: 3597774087
+    locked: 0
