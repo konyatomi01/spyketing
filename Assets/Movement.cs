@@ -6,6 +6,14 @@ public class Movement : MonoBehaviour
 {
     public float speed;
     public CircleCollider2D circleCollider;
+    
+    public AudioClip eatSound;
+    private AudioSource audioSource;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void Update()
     {
@@ -34,6 +42,8 @@ public class Movement : MonoBehaviour
             float x = (-2 * transform.localScale.x + Mathf.Sqrt(4 * Mathf.Pow(transform.localScale.x, 2f) + 4 * area / 3.14f)) / 2f;
             transform.localScale = new Vector3(transform.localScale.x + 2 * x, transform.localScale.y + 2 * x, 1);
             Destroy(collision.gameObject);
+            
+            audioSource.PlayOneShot(eatSound);
         } else
         {
             if (transform.localScale.x < collision.gameObject.transform.localScale.x)
