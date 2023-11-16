@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -10,6 +11,9 @@ public class Movement : MonoBehaviour
     public AudioClip eatSound;
     private AudioSource audioSource;
 
+    public CinemachineVirtualCamera camera;
+    public int cameraDistance=40;
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -17,6 +21,10 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+
+        //camera.m_Lens.OrthographicSize = 1/( 16/ (gameObject.transform.localScale.x * cameraDistance));
+        camera.m_Lens.OrthographicSize = 2 * Mathf.Log(gameObject.transform.localScale.x + 2, 1.3f);
+        
         if (Input.GetKey(KeyCode.W))
         {
             transform.position += new Vector3(0f, speed * Time.deltaTime, 0f);

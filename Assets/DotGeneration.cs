@@ -9,6 +9,7 @@ public class DotGeneration : MonoBehaviour
     private System.DateTime time;
     public int timediff;
     private System.Random rnd;
+    public GameObject[] players;
     private void Start()
     {
         time = System.DateTime.Now;
@@ -26,4 +27,6 @@ public class DotGeneration : MonoBehaviour
             time = currentTime;
         }
     }
+    
+    
 }

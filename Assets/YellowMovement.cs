@@ -6,6 +6,14 @@ public class YellowMovement : MonoBehaviour
 {
     public GameObject green;
     public float speed;
+    
+    public AudioClip eatSound;
+    public AudioSource audioSource;
+    
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     void Update()
     {
         Vector3 vec = green.transform.position - transform.position;
@@ -18,6 +26,8 @@ public class YellowMovement : MonoBehaviour
             float size = collision.gameObject.transform.localScale.x;
             Destroy(collision.gameObject);
             transform.localScale = new Vector3(transform.localScale.x + size, transform.localScale.y + size, 1);
+            
+            audioSource.PlayOneShot(eatSound);
         }
     }
 }
