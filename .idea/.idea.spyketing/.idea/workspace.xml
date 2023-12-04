@@ -6,12 +6,24 @@
   <component name="ChangeListManager">
     <list default="true" id="4a5c97a8-9519-4d95-83b4-1f78cc2c9a24" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.spyketing/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.spyketing/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Backgroud/Background.jpg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Backgroud/Background.jpg.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Characters/Prefabs/Circle.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Characters/Prefabs/Circle.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/DotGeneration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DotGeneration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Fonts/JazzCreateBubble SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/JazzCreateBubble SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Movement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Movement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PurpleMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PurpleMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/RedMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/RedMovement.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Game.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Game.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/YellowMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/YellowMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/kepek/music.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/kepek/music.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/kepek/musicicon.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/kepek/musicicon.webp.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/kepek/osztodas.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/kepek/osztodas.webp.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +36,8 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/SceneLoader.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/gombnagyito.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/settings.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/zene_kibe.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -115,7 +129,10 @@
       <workItem from="1699280699929" duration="506000" />
       <workItem from="1699360323231" duration="1396000" />
       <workItem from="1699465837606" duration="1003000" />
-      <workItem from="1700063005664" duration="5485000" />
+      <workItem from="1700063005664" duration="9826000" />
+      <workItem from="1700579075462" duration="5708000" />
+      <workItem from="1701098602014" duration="11845000" />
+      <workItem from="1701275003924" duration="4225000" />
     </task>
     <servers />
   </component>
@@ -126,5 +143,24 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/zene_kibe.cs</url>
+          <line>18</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/zene_kibe.cs" initialLine="19" containingFunctionPresentation="Method 'Start'">
+            <startOffsets>
+              <option value="319" />
+            </startOffsets>
+            <endOffsets>
+              <option value="351" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

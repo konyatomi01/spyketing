@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -14,9 +17,26 @@ public class Movement : MonoBehaviour
     public CinemachineVirtualCamera camera;
     public int cameraDistance=40;
 
+    public TextMeshProUGUI score;
+
+    public settings Settings;
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        Settings = GameObject.FindWithTag("settings").GetComponent<settings>();
+        switch (Settings.difficulty)
+        {
+            case 1:
+                transform.localScale=transform.localScale*1;
+                break;
+            case 2:
+                transform.localScale=transform.localScale*0.7f;
+                break;
+            case 3:
+                transform.localScale=transform.localScale*0.5f;
+                break;
+        }
     }
 
     void Update()
@@ -24,6 +44,8 @@ public class Movement : MonoBehaviour
 
         //camera.m_Lens.OrthographicSize = 1/( 16/ (gameObject.transform.localScale.x * cameraDistance));
         camera.m_Lens.OrthographicSize = 2 * Mathf.Log(gameObject.transform.localScale.x + 2, 1.3f);
+
+        score.text = (Math.Round((decimal)gameObject.transform.localScale.x, 2) * 10).ToString();
         
         if (Input.GetKey(KeyCode.W))
         {

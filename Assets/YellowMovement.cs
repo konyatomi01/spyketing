@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class YellowMovement : MonoBehaviour
@@ -9,6 +10,8 @@ public class YellowMovement : MonoBehaviour
     
     public AudioClip eatSound;
     public AudioSource audioSource;
+
+    
     
     void Start()
     {

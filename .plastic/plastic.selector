@@ -1,0 +1,4 @@
+repository "spyketing@konyatomi01@cloud"
+  path "/"
+    br "/main"
+    co "/main"

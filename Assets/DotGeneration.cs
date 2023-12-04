@@ -1,32 +1,73 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class DotGeneration : MonoBehaviour
+public class FoodSpawner : MonoBehaviour
 {
-    public GameObject prefab;
-    private System.DateTime time;
-    public int timediff;
-    private System.Random rnd;
-    public GameObject[] players;
-    private void Start()
+    public GameObject foodPrefab;
+    public int mapWidth = 100;
+    public int mapHeight = 100;
+    public int numFoodItems = 100;
+    public float minDistance = 2f;
+
+    private Transform playerTransform;
+
+    void Start()
     {
-        time = System.DateTime.Now;
-        rnd = new System.Random();
-    }
-    void Update()
-    {
-        System.DateTime currentTime = System.DateTime.Now;
-        TimeSpan ts = currentTime - time;
-        if (Convert.ToInt32(ts.TotalMilliseconds) > timediff)
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        if (playerTransform == null)
         {
-            float x = -10f + (float)rnd.NextDouble() * 20f;
-            float y = -10f + (float)rnd.NextDouble() * 20f;
-            Instantiate(prefab, new Vector3(x, y, 1f), new Quaternion(0f, 0f, 0f, 0f));
-            time = currentTime;
+            Debug.LogError("Player not found. Make sure the player has the 'Player' tag.");
+            return;
+        }
+
+        SpawnFood();
+    }
+
+    void SpawnFood()
+    {
+        for (int i = 0; i < numFoodItems; i++)
+        {
+            
+            Vector3 foodPosition = GetRandomPositionAroundPlayer();
+
+            
+            while (IsTooCloseToOtherFood(foodPosition))
+            {
+                
+                foodPosition = GetRandomPositionAroundPlayer();
+            }
+
+            
+            Instantiate(foodPrefab, foodPosition, Quaternion.identity);
         }
     }
-    
-    
+
+    Vector3 GetRandomPositionAroundPlayer()
+    {
+        
+        float offsetX = Random.Range(-mapWidth / 2f, mapWidth / 2f);
+        float offsetY = Random.Range(-mapHeight / 2f, mapHeight / 2f);
+
+        
+        Vector3 foodPosition = playerTransform.position + new Vector3(offsetX, offsetY, 0);
+
+        return foodPosition;
+    }
+
+    bool IsTooCloseToOtherFood(Vector3 position)
+    {
+        
+        GameObject[] foodItems = GameObject.FindGameObjectsWithTag("Food");
+
+        
+        foreach (var foodItem in foodItems)
+        {
+            float distance = Vector3.Distance(position, foodItem.transform.position);
+            if (distance < minDistance)
+            {
+                return true; 
+            }
+        }
+
+        return false; 
+    }
 }
