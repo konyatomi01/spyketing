@@ -14,14 +14,20 @@ public class Movement : MonoBehaviour
     public CinemachineVirtualCamera camera;
     public int cameraDistance=40;
 
+    public float proximityThreshold = 3.5f;
+
+    Animator animator;
+ 
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-
+        CheckScared();
         //camera.m_Lens.OrthographicSize = 1/( 16/ (gameObject.transform.localScale.x * cameraDistance));
         camera.m_Lens.OrthographicSize = 2 * Mathf.Log(gameObject.transform.localScale.x + 2, 1.3f);
         
@@ -41,6 +47,7 @@ public class Movement : MonoBehaviour
         {
             transform.position -= new Vector3(speed * Time.deltaTime, 0f, 0f);
         }
+        
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -63,4 +70,67 @@ public class Movement : MonoBehaviour
             }
         }
     }
+
+    public void CheckScared()
+    {
+        int x = 0;
+
+        var p2 = GameObject.Find("player_2");
+        var p3 = GameObject.Find("player_3");
+        var p4 = GameObject.Find("player_4");
+
+        animator.SetBool("isScared", false);
+
+        if (IsBigger(p2) )
+        {
+            x++;
+        }
+
+        if (IsBigger(p3))
+        {
+            x++;
+        }
+
+        if (IsBigger(p4))
+        {
+            x++;
+        }
+
+        if (x > 1)
+        {
+            animator.SetBool("isScared", true);
+        }
+
+
+
+        if ( ( IsTooClose(p2) && IsBigger(p2) ) || 
+             ( IsTooClose(p3) && IsBigger(p3) ) || 
+             ( IsTooClose(p4) && IsBigger(p4) ) )
+        {
+            animator.SetBool("isScared", true);
+        }
+    }
+
+    bool IsBigger(GameObject otherPlayer)
+    {
+        if (otherPlayer.transform.localScale.x > transform.localScale.x)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+
+    bool IsTooClose(GameObject otherPlayer)
+    {
+        if (otherPlayer != null)
+        {
+            float distance = Vector2.Distance(transform.position, otherPlayer.transform.position);
+            return distance < proximityThreshold;
+        }
+
+        return false;
+    }
+
 }

@@ -7,10 +7,15 @@ public class RedMovement : MonoBehaviour
     
     public AudioClip eatSound;
     private AudioSource audioSource;
-    
+
+    public float proximityThreshold = 3.5f;
+
+    Animator animator;
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -23,4 +28,54 @@ public class RedMovement : MonoBehaviour
             audioSource.PlayOneShot(eatSound);
         }
     }
+
+    void Update()
+    {
+        CheckAngry();
+    }
+
+    public void CheckAngry()
+    {
+
+
+        var p2 = GameObject.Find("player_4");
+        var p3 = GameObject.Find("player_2");
+        var p4 = GameObject.Find("player_7");
+
+        animator.SetBool("isAngry", false);
+
+
+
+        if ((IsTooClose(p4) && IsSmaller(p4)) ||
+             (IsTooClose(p2) && IsSmaller(p2)) ||
+             (IsTooClose(p4) && IsSmaller(p4)))
+        {
+            animator.SetBool("isAngry", true);
+        }
+    }
+
+
+
+    bool IsSmaller(GameObject otherPlayer)
+    {
+        if (otherPlayer.transform.localScale.x < transform.localScale.x)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+
+    bool IsTooClose(GameObject otherPlayer)
+    {
+        if (otherPlayer != null)
+        {
+            float distance = Vector2.Distance(transform.position, otherPlayer.transform.position);
+            return distance < proximityThreshold;
+        }
+
+        return false;
+    }
+
 }
