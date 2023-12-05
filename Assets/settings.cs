@@ -11,7 +11,7 @@ public class settings : MonoBehaviour
     public bool zene_switch = true;
 
     public int difficulty = 1;
-    // Start is called before the first frame update
+    
     void Start()
     {
         settings_object = GetComponent<settings>();

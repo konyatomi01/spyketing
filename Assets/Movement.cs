@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -46,11 +47,12 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+        
         CheckScared();
         //camera.m_Lens.OrthographicSize = 1/( 16/ (gameObject.transform.localScale.x * cameraDistance));
         camera.m_Lens.OrthographicSize = 2 * Mathf.Log(gameObject.transform.localScale.x + 2, 1.3f);
 
-        score.text = (Math.Round((decimal)gameObject.transform.localScale.x, 2) * 10).ToString();
+        //score.text = (Math.Round((decimal)gameObject.transform.localScale.x, 2) * 10).ToString();
 
         if (Input.GetKey(KeyCode.W))
         {

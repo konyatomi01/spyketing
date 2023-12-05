@@ -7,16 +7,18 @@ public class SinusMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        transform.localScale = transform.localScale * 1.2f;
     }
 
-    // Update is called once per frame
+    public float scaleSpeed = 1.0f; // Adjust the speed of the scaling
+    public float scaleFactor = 0.1f; // Adjust the amplitude of the sine wave
+
     void Update()
     {
-        /*
-        float a = Mathf.Sin(Time.deltaTime);
-        float b = transform.localScale.x * 0.2f * a;
-        transform.localScale = new Vector3 (transform.localScale.x + b, transform.localScale.y + b, 1);
-        */
+        // Calculate the new scale using a sine function
+        float newScale = Mathf.Sin(Time.time * scaleSpeed) * scaleFactor;
+
+        // Apply the new scale to the object
+        transform.localScale = new Vector3(1 + newScale, 1 + newScale, 1 + newScale);
     }
 }
