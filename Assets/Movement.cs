@@ -13,11 +13,7 @@ public class Movement : MonoBehaviour
     
     public AudioClip eatSound;
     private AudioSource audioSource;
-
-    public CinemachineVirtualCamera camera;
-    public int cameraDistance=40;
-
-    public TextMeshProUGUI score;
+    
 
     public settings Settings;
 
@@ -30,6 +26,10 @@ public class Movement : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
+
+
+        
+        
         Settings = GameObject.FindWithTag("settings").GetComponent<settings>();
         switch (Settings.difficulty)
         {
@@ -47,49 +47,34 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        
         CheckScared();
-        //camera.m_Lens.OrthographicSize = 1/( 16/ (gameObject.transform.localScale.x * cameraDistance));
-        camera.m_Lens.OrthographicSize = 2 * Mathf.Log(gameObject.transform.localScale.x + 2, 1.3f);
-
-        //score.text = (Math.Round((decimal)gameObject.transform.localScale.x, 2) * 10).ToString();
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            transform.position += new Vector3(0f, speed * Time.deltaTime, 0f);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.position -= new Vector3(0f, speed * Time.deltaTime, 0f);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.position += new Vector3(speed * Time.deltaTime, 0f, 0f);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.position -= new Vector3(speed * Time.deltaTime, 0f, 0f);
-        }
-        
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (transform.localScale.x > collision.gameObject.transform.localScale.x)
+        
+        Rigidbody2D otherRigidbody = collision.gameObject.GetComponent<Rigidbody2D>();
+        
+        if (otherRigidbody != null && !gameObject.CompareTag("Player"))
         {
-            float area = (collision.gameObject.transform.localScale.x / 2) * (collision.gameObject.transform.localScale.x / 2) * 3.14f;
-            float x = (-2 * transform.localScale.x + Mathf.Sqrt(4 * Mathf.Pow(transform.localScale.x, 2f) + 4 * area / 3.14f)) / 2f;
-            transform.localScale = new Vector3(transform.localScale.x + 2 * x, transform.localScale.y + 2 * x, 1);
-            Destroy(collision.gameObject);
-            
-            audioSource.PlayOneShot(eatSound);
-        } else
-        {
-            if (transform.localScale.x < collision.gameObject.transform.localScale.x)
+            if (transform.localScale.x > otherRigidbody.transform.localScale.x)
             {
-                float area = (transform.localScale.x / 2) * (transform.localScale.x / 2) * 3.14f;
-                float x = (-2 * collision.gameObject.transform.localScale.x + Mathf.Sqrt(4 * Mathf.Pow(collision.gameObject.transform.localScale.x, 2f) + 4 * area / 3.14f)) / 2f;
-                collision.gameObject.transform.localScale = new Vector3(collision.gameObject.transform.localScale.x + 2 * x, collision.gameObject.transform.localScale.y + 2 * x, 1);
-                Destroy(gameObject);
+                Vector3 newScale = transform.localScale + 0.5f * otherRigidbody.transform.localScale;
+                transform.localScale = newScale;
+
+                audioSource.PlayOneShot(eatSound);
+                
+                
+                Destroy(collision.gameObject);
+            }
+            else
+            {
+                if (transform.localScale.x < collision.gameObject.transform.localScale.x)
+                {
+                    float area = (transform.localScale.x / 2) * (transform.localScale.x / 2) * 3.14f;
+                    float x = (-2 * collision.gameObject.transform.localScale.x + Mathf.Sqrt(4 * Mathf.Pow(collision.gameObject.transform.localScale.x, 2f) + 4 * area / 3.14f)) / 2f;
+                    collision.gameObject.transform.localScale = new Vector3(collision.gameObject.transform.localScale.x + 2 * x, collision.gameObject.transform.localScale.y + 2 * x, 1);
+                    Destroy(gameObject);
+                }
             }
         }
     }
